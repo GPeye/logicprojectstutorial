@@ -2,6 +2,7 @@ use bevy::prelude::*;
 use bevy_inspector_egui::RegisterInspectable;
 use bevy_inspector_egui::WorldInspectorPlugin;
 
+use crate::combat::CombatStats;
 use crate::player::EncounterTracker;
 use crate::player::Player;
 
@@ -12,7 +13,8 @@ impl Plugin for DebugPlugin {
         if cfg!(debug_assertions) {
             app.add_plugin(WorldInspectorPlugin::new())
                 .register_type::<EncounterTracker>()
-                .register_inspectable::<Player>();
+                .register_inspectable::<Player>()
+                .register_inspectable::<CombatStats>();
         }
     }
 }

@@ -4,6 +4,7 @@ use bevy::{input::keyboard, prelude::*};
 use bevy_inspector_egui::Inspectable;
 
 use crate::ascii::{spawn_ascii_sprite, AsciiSheet};
+use crate::combat::CombatStats;
 use crate::fadeout::create_fadeout;
 use crate::tilemap::{EncounterSpawner, TileCollider};
 use crate::{GameState, TILE_SIZE};
@@ -184,6 +185,12 @@ fn spawn_player(mut commands: Commands, ascii: Res<AsciiSheet>) {
             speed: 3.,
             just_moved: false,
             active: true,
+        })
+        .insert(CombatStats {
+            health: 10,
+            max_health: 10,
+            attack: 2,
+            defense: 1,
         })
         .insert(EncounterTracker {
             timer: Timer::from_seconds(1.0, true),
